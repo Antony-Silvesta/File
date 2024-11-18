@@ -34,11 +34,11 @@ jobs:
 
     - name: Set PYTHONPATH
       run: |
-        echo "PYTHONPATH=$GITHUB_WORKSPACE/File:$GITHUB_WORKSPACE/File/configfile" >> $GITHUB_ENV
+        echo "PYTHONPATH=$GITHUB_WORKSPACE:$GITHUB_WORKSPACE/configfile" >> $GITHUB_ENV
 
     - name: Set Environment Variables
       run: |
-        echo "PYTHONPATH=$GITHUB_WORKSPACE/File/homeobjects:$GITHUB_WORKSPACE/File/configfile" >> $GITHUB_ENV
+        echo "PYTHONPATH=$GITHUB_WORKSPACE/homeobjects:$GITHUB_WORKSPACE/configfile" >> $GITHUB_ENV
         echo "MONGO_URI=mongodb://127.0.0.1:27017/your_database_name" >> $GITHUB_ENV
 
     - name: Wait for MongoDB to be ready
@@ -53,7 +53,7 @@ jobs:
 
     - name: Configure MongoDB Test Data
       run: |
-        python $GITHUB_WORKSPACE/File/configfile/config.py  # Use absolute path to ensure it is found
+        python $GITHUB_WORKSPACE/configfile/config.py  # Use absolute path to ensure it is found
 
     - name: Set up ChromeDriver and Chrome
       uses: browser-actions/setup-chrome@v1
