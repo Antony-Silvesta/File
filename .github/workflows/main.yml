@@ -37,8 +37,9 @@ jobs:
 
     - name: Set Environment Variables
       run: |
-       echo "PYTHONPATH=$PWD/File/homeobjects:$PWD/File/configfile/config.py" >> $GITHUB_ENV
-       echo "MONGO_URI=mongodb://127.0.0.1:27017/get_db" >> $GITHUB_ENV
+         echo "PYTHONPATH=$GITHUB_WORKSPACE/File:$GITHUB_WORKSPACE/File/configfile" >> $GITHUB_ENV
+         echo "MONGO_URI=mongodb://127.0.0.1:27017/get_db" >> $GITHUB_ENV
+     
 
     
           
