@@ -65,9 +65,7 @@ jobs:
     - name: Set Timezone to India Standard Time (IST)
       run: sudo timedatectl set-timezone Asia/Kolkata  # Set the timezone to IST
 
-    - name: List all files and directories (for debugging)
-      run: |
-        ls -R  # Lists all files and directories recursively for debugging
+    
 
     - name: Run Selenium tests and generate HTML report
       id: run_tests
