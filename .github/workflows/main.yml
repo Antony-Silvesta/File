@@ -28,12 +28,13 @@ jobs:
       run: |
           ls -R $PWD     
    
-    - name: Set PYTHONPATH for Windows
+    - name: Set PYTHONPATH 
       run: |
        echo "PYTHONPATH=C:\\Users\\shinba\\Downloads\\delete_files\\samplewebsite" >> $GITHUB_ENV
 
     - name: Set Environment Variables
       run: |
+       echo "PYTHONPATH=$PWD/File/homeobjects:$PWD/File/configfile/config.py" >> $GITHUB_ENV
        echo "MONGO_URI=mongodb://127.0.0.1:27017/test_db" >> $GITHUB_ENV
 
     
