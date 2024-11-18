@@ -25,10 +25,10 @@ jobs:
         pip install -r requirements.txt
     - name: Set PYTHONPATH
       run: |
-        echo "PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE/Cases/"configfile/config.py >> $GITHUB_ENV
+        echo "PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE/File/"configfile/config.py >> $GITHUB_ENV
     - name: Set Environment Variables
       run: |
-        echo "PYTHONPATH=$PWD/Cases/homeobjects:$PWD/Cases/configfile/config.py" >> $GITHUB_ENV
+        echo "PYTHONPATH=$PWD/Cases/homeobjects:$PWD/File/configfile/config.py" >> $GITHUB_ENV
         echo "MONGO_URI=mongodb://127.0.0.1:27017/test_db" >> $GITHUB_ENV
     - name: Wait for MongoDB to be ready
       run: |
