@@ -4,7 +4,6 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -13,34 +12,24 @@ jobs:
         image: mongo:4.4
         ports:
           - 27017:27017
-    
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
-    - name: List files in the repository (for debugging)
-      run: |
-        ls -R $GITHUB_WORKSPACE  # List all files recursively to check if configfile/config.py exists
-
     - name: Set PYTHONPATH
       run: |
-        echo "PYTHONPATH=$GITHUB_WORKSPACE:$GITHUB_WORKSPACE/configfile" >> $GITHUB_ENV
-
+        echo "PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE/File/"configfile/config.py >> $GITHUB_ENV
     - name: Set Environment Variables
       run: |
-        echo "PYTHONPATH=$GITHUB_WORKSPACE/homeobjects:$GITHUB_WORKSPACE/configfile" >> $GITHUB_ENV
+        echo "PYTHONPATH=$PWD/File/homeobjects:$PWD/File/configfile/config.py" >> $GITHUB_ENV
         echo "MONGO_URI=mongodb://127.0.0.1:27017/your_database_name" >> $GITHUB_ENV
-
     - name: Wait for MongoDB to be ready
       run: |
         until nc -zv localhost 27017; do
@@ -48,44 +37,60 @@ jobs:
           sleep 1
         done
         echo "MongoDB is ready"
-
-    
-
     - name: Configure MongoDB Test Data
       run: |
-        python $GITHUB_WORKSPACE/configfile/config.py  # Use absolute path to ensure it is found
-
+        python configfile/config.py  # Adjust the path to your setup script if necessary
     - name: Set up ChromeDriver and Chrome
       uses: browser-actions/setup-chrome@v1
       with:
         chrome-version: 'latest'
 
     - name: Set Timezone to India Standard Time (IST)
-      run: sudo timedatectl set-timezone Asia/Kolkata  # Set the timezone to IST
-
+      run: sudo timedatectl set-timezone Asia/Kolkata  # Set the timezone to IST  
+      
+    - name: List all files and directories
+      run: |
+        ls -R   # Lists all files and directories recursively for debugging
     
-
+   
     - name: Run Selenium tests and generate HTML report
       id: run_tests
       run: |
-        pytest --html=Selenium_report.html --self-contained-html > pytest_test_results.log || exit 0
-        cat pytest_test_results.log
-
+            pytest --html=Selenium_report.html --self-contained-html > pytest_test_results.log || exit 0
+            cat pytest_test_results.log
+   
+        
     - name: Archive Pytest Results
       uses: actions/upload-artifact@v3
       with:
-        name: pytest-results
-        path: pytest_test_results.log
-
+            name: pytest-results
+            path: pytest_test_results.log
+        
     - name: Archive HTML Test Report
       uses: actions/upload-artifact@v3
       with:
-        name: selenium-test-report
-        path: Selenium_report.html
-
+            name: selenium-test-report
+            path: Selenium_report.html
+        
     - name: Archive Screenshots for Failed Tests
       if: always()
       uses: actions/upload-artifact@v3
       with:
-        name: selenium Failed Tests-screenshots
-        path: screenshots/
+              name: selenium Failed Tests-screenshots
+              path: screenshots/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
