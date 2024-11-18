@@ -23,13 +23,21 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Set PYTHONPATH
+
+    - name: List files in the directory
       run: |
-        echo "PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE/File/"configfile/config.py >> $GITHUB_ENV
+          ls -R $PWD     
+   
+    - name: Set PYTHONPATH for Windows
+      run: |
+       echo "PYTHONPATH=C:\\Users\\shinba\\Downloads\\delete_files\\samplewebsite" >> $GITHUB_ENV
+
     - name: Set Environment Variables
       run: |
-        echo "PYTHONPATH=$PWD/File/homeobjects:$PWD/File/configfile/config.py" >> $GITHUB_ENV
-        echo "MONGO_URI=mongodb://127.0.0.1:27017/test_db" >> $GITHUB_ENV
+       echo "MONGO_URI=mongodb://127.0.0.1:27017/test_db" >> $GITHUB_ENV
+
+    
+          
     - name: Wait for MongoDB to be ready
       run: |
         until nc -zv localhost 27017; do
