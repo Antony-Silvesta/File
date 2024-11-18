@@ -45,9 +45,15 @@ jobs:
           sleep 1
         done
         echo "MongoDB is ready"
+
+    - name: List all files (again for debugging)
+      run: |
+        ls -R  # Double-check that files are available
+
     - name: Configure MongoDB Test Data
       run: |
-        python configfile/config.py  # Adjust the path to your setup script if necessary
+        python $PWD/configfile/config.py  # Use full path to the config script if necessary
+    
     - name: Set up ChromeDriver and Chrome
       uses: browser-actions/setup-chrome@v1
       with:
