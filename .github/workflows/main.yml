@@ -53,7 +53,7 @@ jobs:
 
     - name: Configure MongoDB Test Data
       run: |
-        python $PWD/configfile/config.py  # Use full path to the config script if necessary
+        python configfile/config.py  # Use full path to the config script if necessary
     
     - name: Set up ChromeDriver and Chrome
       uses: browser-actions/setup-chrome@v1
