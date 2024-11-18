@@ -49,9 +49,7 @@ jobs:
         done
         echo "MongoDB is ready"
 
-    - name: List files in the configfile directory (for debugging)
-      run: |
-        ls -R $GITHUB_WORKSPACE/File/configfile  # List files in the configfile directory to verify if config.py exists
+    
 
     - name: Configure MongoDB Test Data
       run: |
