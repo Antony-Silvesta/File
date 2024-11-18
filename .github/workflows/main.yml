@@ -30,12 +30,12 @@ jobs:
    
     - name: Set PYTHONPATH 
       run: |
-       echo "PYTHONPATH=C:\\Users\\shinba\\Downloads\\delete_files\\samplewebsite" >> $GITHUB_ENV
+       echo "PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE/File/"configfile/config.py >> $GITHUB_ENV
 
     - name: Set Environment Variables
       run: |
        echo "PYTHONPATH=$PWD/File/homeobjects:$PWD/File/configfile/config.py" >> $GITHUB_ENV
-       echo "MONGO_URI=mongodb://127.0.0.1:27017/test_db" >> $GITHUB_ENV
+       echo "MONGO_URI=mongodb://127.0.0.1:27017/get_db" >> $GITHUB_ENV
 
     
           
