@@ -28,7 +28,7 @@ jobs:
         echo "PYTHONPATH=$PYTHONPATH:$GITHUB_WORKSPACE/File/"configfile/config.py >> $GITHUB_ENV
     - name: Set Environment Variables
       run: |
-        echo "PYTHONPATH=$PWD/Cases/homeobjects:$PWD/File/configfile/config.py" >> $GITHUB_ENV
+        echo "PYTHONPATH=$PWD/File/homeobjects:$PWD/File/configfile/config.py" >> $GITHUB_ENV
         echo "MONGO_URI=mongodb://127.0.0.1:27017/test_db" >> $GITHUB_ENV
     - name: Wait for MongoDB to be ready
       run: |
