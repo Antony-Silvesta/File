@@ -39,7 +39,7 @@ jobs:
         echo "MongoDB is ready"
     - name: Configure MongoDB Test Data
       run: |
-        python configfile/config.py  # Adjust the path to your setup script if necessary
+        python File/configfile/config.py  # Adjust the path to your setup script if necessary
     - name: Set up ChromeDriver and Chrome
       uses: browser-actions/setup-chrome@v1
       with:
